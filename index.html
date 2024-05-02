@@ -108,13 +108,16 @@
     <div class="container">
       <!-- Paper Image. -->
       <h2 class="title is-3">Overview</h2>
-      <div class="columns is-centered has-text-centered">
+      <div class="columns">
         <div class="column">
-          <img src="static/images/Figure1.jpg" alt="MY ALT TEXT" width="600" height="auto"/>
+          <div style="text-align: center;"> <!-- 이미지를 가운데 정렬하는 스타일 -->
+            <img src="static/images/Figure1.jpg" alt="MY ALT TEXT" width="600" height="auto"/>
+          </div>
           <p>
-            (<b>A</b>) Listening to human-produced sound and extracting sound features such as amplitude and onset.
-            (<b>B</b>) Interaction with the object and sound generation according to the action of the prosthetic hand.
-            (<b>C</b>) Calculate the reward, including amplitude, onset, timing, and hit reward from the extracted sound information and recorded interactive sound.          </p>
+            <b>(A)</b> We first record a human-produced tapping sound and extract key features such as amplitude and onset. These features serve as the reference for the prosthetic hand to learn from and imitate.
+            <b>(B)</b> The prosthetic hand then interacts with the environment, in this case, a drum pad, to generate sounds. It learns to adjust its finger movements based on the feedback it receives from the generated sound. We employ a reinforcement learning framework, specifically Proximal Policy Optimization (PPO), to train the hand's control policy. The policy maps the hand's current state to actions that produce the desired tapping motion.
+            <b>(C)</b> To guide the learning process, we define a reward function that incorporates multiple sound features. The reward function compares the generated sound with the reference sound in terms of amplitude, onset strength, onset timing, and the number of hits. By maximizing this reward, the prosthetic hand learns to produce tapping sounds that closely resemble the human-produced reference. The policy is iteratively updated based on the earned rewards using the PPO algorithm until convergence.
+          </p>
         </div>
       </div>
     </div>
@@ -160,39 +163,12 @@
   <div class="hero-body">
     <div class="container">
       <h2 class="title is-3">Experimental Results</h2>
-      <div class="columns is-centered">
-        <div class="column is-half">
-          <p class="title is-4">Learning Curve</p>
-          <img src="static/images/Figure3.jpg" alt="Learning Curve" width="500" height="auto"/>
-          <p>
-            The learning curve of a prosthetic hand to make tapping sounds, single-beat and double-beats. 
-            The blue line is the smoothed reward, and the light blue area indicates the variance.
-          </p>
-        </div>
-    
-        <div class="column is-half">
-          <p class="title is-4">Waveform Comparison</p>
-          <img src="static/images/Figure4.jpg" alt="Waveform Comparison" width="500" height="auto"/>
-          <p>
-            The waveforms of the reference sound and the generated sound for both single beats (Top) and double beats (Bottom). 
-            While the generated sound exhibits some motor noise, the two waveforms are remarkably well aligned along the time axis.
-          </p>
-        </div>
-      </div>
-    
-      <div class="columns is-centered">
-        <div class="column is-half">
-          <p class="title is-4">Onset Strength and Timing</p>
-          <img src="static/images/Figure5.jpg" alt="Onset Strength and Timing" width="500" height="auto"/>
-          <p>
-            The onset strength and timing for both the reference sound and the generated sound in single beats (Top) and double beats (Bottom). 
-            The timing difference between the two beats in the generated sound closely aligns with the timing difference in the reference.
-          </p>
-        </div>
-    
-        <div class="column is-half">
+      
+      <!-- Tapping Motion Sequence in full-width -->
+      <div class="columns">
+        <div class="column is-full">
           <p class="title is-4">Tapping Motion Sequence</p>
-          <img src="static/images/Figure6.jpg" alt="Tapping Motion Sequence" width="650" height="auto"/>
+          <img src="static/images/Figure6.jpg" alt="Tapping Motion Sequence" width="100%" height="auto"/>
           <p>
             Snapshot of prosthetic hand movements for sound generation. 
             (Top) The movement of the trained prosthetic hand when given a single beat sound of one-second duration. 
@@ -200,10 +176,42 @@
           </p>
         </div>
       </div>
+      
+      <!-- Other three items in three columns -->
+      <div class="columns">
+        <div class="column is-one-third">
+          <p class="title is-4">Learning Curve</p>
+          <img src="static/images/Figure3.jpg" alt="Learning Curve" width="81%" height="auto"/>
+          <p>
+            The learning curve of a prosthetic hand to make tapping sounds, single-beat and double-beats. 
+            The blue line is the smoothed reward, and the light blue area indicates the variance.
+          </p>
+        </div>
+    
+        <div class="column is-one-third">
+          <p class="title is-4">Waveform Comparison</p>
+          <img src="static/images/Figure4.jpg" alt="Waveform Comparison" width="80%" height="auto"/>
+          <p>
+            The waveforms of the reference sound and the generated sound for both single beats (Top) and double beats (Bottom). 
+            While the generated sound exhibits some motor noise, the two waveforms are remarkably well aligned along the time axis.
+          </p>
+        </div>
+    
+        <div class="column is-one-third">
+          <p class="title is-4">Onset Strength and Timing</p>
+          <img src="static/images/Figure5.jpg" alt="Onset Strength and Timing" width="100%" height="auto"/>
+          <p>
+            The onset strength and timing for both the reference sound and the generated sound in single beats (Top) and double beats (Bottom). 
+            The timing difference between the two beats in the generated sound closely aligns with the timing difference in the reference.
+          </p>
+        </div>
+      </div>
+      
     </div>
   </div>
 </section>
 <!-- End Experimental Results -->
+
 
 <!-- Demo Video -->
 <section class="hero is-small is-light">
